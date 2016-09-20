@@ -20,7 +20,12 @@ module.exports = {
   },
 
   _podDirectory: function() {
-    return this.appConfig.podModulePrefix ? this.appConfig.podModulePrefix.replace(this.appConfig.modulePrefix, '') : '';
+    if (this.addonConfig.modulePrefix) {
+      return this.addonConfig.modulePrefix;
+    } else if (this.appConfig.podModulePrefix) {
+      return this.appConfig.podModulePrefix.replace(this.appConfig.modulePrefix, '');
+    }
+    return '';
   },
 
   _namespacingIsEnabled: function() {
